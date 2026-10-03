@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Topology QA</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" />
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+      body {
+        margin: 0;
+        background: var(--bs-tertiary-bg);
+        color: var(--bs-body-color);
+      }
+      #app { max-width: 1440px; margin: 0 auto; }
+    </style>
+    <script type="systemjs-importmap">
+      {
+        "imports": {
+          "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@6.0.3/lib/es2015/system/single-spa.min.js",
+          "react": "https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.development.js",
+          "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.development.js",
+          "@lab/topology-mfe": "/lab-topology-mfe.js"
+        }
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.15.1/dist/system.min.js"></script>
+  </head>
+  <body>
+    <main id="app"></main>
+    <script>
+      System.import("@lab/topology-mfe").then(async (module) => {
+        const props = { name: "@lab/topology-mfe", domElement: document.getElementById("app") };
+        await module.bootstrap(props);
+        await module.mount(props);
+      });
+    </script>
+  </body>
+</html>
